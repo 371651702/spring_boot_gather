@@ -20,7 +20,15 @@ public class SpiController {
      * 如果你并不想用某些实现类，它也被加载并实例化了，这就造成了浪费
      * 2)获取某个实现类的方式不够灵活，只能通过Iterator形式获取，不能根据某个参数来获取对应的实现类
      * 3)多个并发多线程使用ServiceLoader类的实例是不安全的
-     * @param args 启动时的配置参数
+     *
+     * 1.数据库驱动加载接口实现类的加载
+     * JDBC加载不同类型数据库的驱动
+     * 2.日志门面接口实现类加载
+     * SLF4J加载不同提供商的日志实现类
+     * 3.Spring中大量使用了SPI,比如：对servlet3.0规范对ServletContainerInitializer的实现、
+     * 自动类型转换Type Conversion SPI(Converter SPI、Formatter SPI)等
+     * 4.Dubbo中也大量使用SPI的方式实现框架的扩展, 不过它对Java提供的原生SPI做了封装，允许用户扩展实现Filter接口
+     * 5.spring cloud SPI使用 https://blog.csdn.net/qq_27529917/article/details/80861178
      */
     public static void main(String[] args) {
         ServiceLoader<IShout> loader = ServiceLoader.load(IShout.class);
